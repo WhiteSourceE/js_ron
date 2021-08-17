@@ -30,9 +30,6 @@ router.post('/login/auth', function (req, res) {
   if (newQList.length >= 1) {
     q = 'SELECT * FROM users WHERE name = $1 AND password = $2;';
     arr = [u, p];
-  } else {
-    q =
-      "SELECT * FROM users WHERE name = '" + u + "' AND password ='" + p + "';";
   }
 
   return db.query(q, arr);
