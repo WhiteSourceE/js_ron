@@ -28,8 +28,7 @@ router.post('/login/auth', function (req, res) {
   );
 
   if (newQList.length >= 1) {
-    q =
-      "SELECT * FROM users WHERE name = '" + u + "' AND password ='" + p + "';";
+    q = newQList[0];
   }
 
   return db.one(q);

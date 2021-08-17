@@ -22,13 +22,11 @@ router.post('/login/auth', function (req, res) {
   let q = '';
 
   let newQList = qList.filter(
-    (user) =>
-      u ===
-      "SELECT * FROM users WHERE name = '" + u + "' AND password ='" + p + "';"
+    (user) => u === 'SELECT * FROM users WHERE name = $1 AND password = $2;'
   );
 
   if (newQList.length >= 1) {
-    q = 'SELECT * FROM users WHERE name = $1 AND password = $2;';
+    q = newQList[0];
     arr = [u, p];
   }
 
