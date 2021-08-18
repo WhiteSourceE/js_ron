@@ -1,4 +1,4 @@
-var pgp = require('pg-promise')();
+var mysql = require('mysql');
 var express = require('express');
 var router = express.Router();
 
@@ -28,10 +28,15 @@ router.post('/login/auth', function (req, res) {
 
   //auth.js#do_auth
 
-  var db = pgp(
-    'postgres://postgres:postgres@127.0.0.1' + '/' + 'vulnerablenode'
-  );
-  // why not just assign prepSafe right away
+  var db = mysql.createConnection({
+    host: 'localhost',
+    user: 'me',
+    password: 'secret',
+    database: 'my_db',
+  });
+
+  db.connect();
+
   var prepMethod = prep;
   prepMethod = prepSafe;
   return run(db, prepMethod, u, p);
